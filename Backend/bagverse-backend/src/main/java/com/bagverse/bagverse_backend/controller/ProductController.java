@@ -5,6 +5,8 @@ import com.bagverse.bagverse_backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 @RestController
@@ -42,5 +44,13 @@ public class ProductController {
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
+    }
+
+    @GetMapping("/paginated")
+    public Page<Product> getProductsWithPagination(
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        return productService.getProductsWithPagination(page, size);
     }
 }
