@@ -1,0 +1,46 @@
+package com.bagverse.bagverse_backend.controller;
+
+import com.bagverse.bagverse_backend.entity.Product;
+import com.bagverse.bagverse_backend.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/products")
+public class ProductController {
+
+    @Autowired
+    private ProductService productService;
+
+    //Get all Products
+    @GetMapping
+    public List<Product> getAllProducts(){
+        return productService.getAllProducts();
+    }
+
+    //Get product by Id
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable Long id){
+        return productService.getProductById(id);
+    }
+
+    //Create product
+    @PostMapping
+    public Product createProduct(@RequestBody Product product){
+        return productService.createProduct(product);
+    }
+
+    // Update product
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product){
+        return productService.updateProduct(id, product);
+    }
+
+    // Delete product
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Long id){
+        productService.deleteProduct(id);
+    }
+}
