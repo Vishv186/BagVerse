@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Search, User, ShoppingBag, ChevronDown } from "lucide-react";
+import logo from "../assets/logo.png";
 
 function Navbar() {
   const [bagsOpen, setBagsOpen] = useState(false);
@@ -9,37 +11,62 @@ function Navbar() {
     <nav
       style={{
         display: "flex",
-        justifyContent: "space-between",
         alignItems: "center",
-        padding: "15px 40px",
-        background: "#837878",
-        color: "white",
+        justifyContent: "space-between",
+        padding: "18px 60px",
+        background: "#EED9B9",
+        fontFamily: "'Playfair Display', serif",
       }}
     >
-      {/* Brand */}
-      <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-        <h2>BagVerse 👜</h2>
+      {/* LEFT - LOGO */}
+      {/* LEFT - LOGO */}
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <img
+          src={logo}
+          alt="BagVerse Logo"
+          style={{
+            height: "100px",
+            objectFit: "contain",
+            cursor: "pointer",
+          }}
+        />
       </Link>
 
-      {/* Middle Menu */}
-      <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
-        {/* Bags Dropdown */}
+      {/* CENTER MENU */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "40px",
+          fontSize: "18px",
+          color: "#3a3a2a",
+        }}
+      >
+        <span style={{ cursor: "pointer" }}>New Launches</span>
+
+        {/* Bags */}
         <div
           onMouseEnter={() => setBagsOpen(true)}
           onMouseLeave={() => setBagsOpen(false)}
-          style={{ position: "relative" }}
+          style={{
+            position: "relative",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+          }}
         >
-          <span style={{ cursor: "pointer" }}>Bags ▼</span>
-
+          Bags <ChevronDown size={16} />
           {bagsOpen && (
             <div
               style={{
                 position: "absolute",
-                top: "30px",
+                top: "35px",
                 background: "white",
-                color: "black",
-                padding: "10px",
-                borderRadius: "5px",
+                padding: "12px",
+                borderRadius: "6px",
+                boxShadow: "0 6px 15px rgba(0,0,0,0.1)",
+                minWidth: "150px",
               }}
             >
               <Link to="/bags/backpacks">Backpacks</Link>
@@ -51,23 +78,29 @@ function Navbar() {
           )}
         </div>
 
-        {/* Accessories Dropdown */}
+        {/* Accessories */}
         <div
           onMouseEnter={() => setAccOpen(true)}
           onMouseLeave={() => setAccOpen(false)}
-          style={{ position: "relative" }}
+          style={{
+            position: "relative",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+          }}
         >
-          <span style={{ cursor: "pointer" }}>Accessories ▼</span>
-
+          Accessories <ChevronDown size={16} />
           {accOpen && (
             <div
               style={{
                 position: "absolute",
-                top: "30px",
+                top: "35px",
                 background: "white",
-                color: "black",
-                padding: "10px",
-                borderRadius: "5px",
+                padding: "12px",
+                borderRadius: "6px",
+                boxShadow: "0 6px 15px rgba(0,0,0,0.1)",
+                minWidth: "150px",
               }}
             >
               <Link to="/accessories/wallets">Wallets</Link>
@@ -78,21 +111,28 @@ function Navbar() {
             </div>
           )}
         </div>
+
+        <span style={{ cursor: "pointer" }}>Bulk Gifting Ideas</span>
+        <span style={{ cursor: "pointer" }}>One of a kind</span>
       </div>
 
-      {/* Right Side */}
-      <div style={{ display: "flex", alignItems: "center", gap: "25px" }}>
-        {/* Search */}
-        <div>🔍</div>
+      {/* RIGHT SIDE ICONS */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "25px",
+          color: "#3a3a2a",
+        }}
+      >
+        <Search size={22} strokeWidth={1.5} style={{ cursor: "pointer" }} />
 
-        {/* Account */}
-        <Link to="/account" style={{ color: "white", textDecoration: "none" }}>
-          👤
+        <Link to="/account" style={{ color: "#3a3a2a" }}>
+          <User size={22} strokeWidth={1.5} />
         </Link>
 
-        {/* Cart */}
-        <Link to="/cart" style={{ color: "white", textDecoration: "none" }}>
-          🛒
+        <Link to="/cart" style={{ color: "#3a3a2a" }}>
+          <ShoppingBag size={22} strokeWidth={1.5} />
         </Link>
       </div>
     </nav>
