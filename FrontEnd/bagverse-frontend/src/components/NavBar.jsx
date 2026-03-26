@@ -11,11 +11,14 @@ function Navbar() {
     <nav
       style={{
         display: "flex",
-        alignItems: "center",
         justifyContent: "space-between",
-        padding: "18px 60px",
+        alignItems: "center",
+        height: "100px",
+        padding: "0 40px",
         background: "#EED9B9",
         fontFamily: "'Playfair Display', serif",
+        position: "relative",
+        zIndex: 1000,
       }}
     >
       {/* LEFT - LOGO */}
@@ -25,9 +28,9 @@ function Navbar() {
           src={logo}
           alt="BagVerse Logo"
           style={{
-            height: "100px",
+            height: "100%",
+            maxHeight: "200px", // safety cap
             objectFit: "contain",
-            cursor: "pointer",
           }}
         />
       </Link>
@@ -42,8 +45,6 @@ function Navbar() {
           color: "#3a3a2a",
         }}
       >
-        <span style={{ cursor: "pointer" }}>New Launches</span>
-
         {/* Bags */}
         <div
           onMouseEnter={() => setBagsOpen(true)}
@@ -111,9 +112,6 @@ function Navbar() {
             </div>
           )}
         </div>
-
-        <span style={{ cursor: "pointer" }}>Bulk Gifting Ideas</span>
-        <span style={{ cursor: "pointer" }}>One of a kind</span>
       </div>
 
       {/* RIGHT SIDE ICONS */}
