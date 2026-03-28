@@ -64,7 +64,6 @@ function Navbar() {
                 position: "absolute",
                 top: "45px",
                 left: "0",
-                background: "white",
                 background: "#FFF8F0",
                 boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
                 minWidth: "180px",

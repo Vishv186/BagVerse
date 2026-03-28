@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/productService";
+import ProductCard from "../components/ProductCard";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -47,9 +48,6 @@ function Products() {
       price: 1899,
       imageUrl: "https://images.unsplash.com/photo-1592878904946-b3cd7db4c6c6",
     },
-
-    // 🔥 NEW 10 PRODUCTS
-
     {
       id: 107,
       name: "Mini Sling Bag",
@@ -140,20 +138,28 @@ function Products() {
     getProducts()
       .then((res) => {
         if (res.data && res.data.length > 0) {
-          setProducts(res.data); // backend data
+          setProducts(res.data);
         } else {
-          setProducts(dummyProducts); // fallback
+          setProducts(dummyProducts);
         }
       })
       .catch((err) => {
         console.log(err);
-        setProducts(dummyProducts); // fallback on error
+        setProducts(dummyProducts);
       });
   }, []);
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1 style={{ textAlign: "center" }}>Products</h1>
+      <h1
+        style={{
+          textAlign: "center",
+          color: "black",
+          fontFamily: "'Playfair Display', serif",
+        }}
+      >
+        Products
+      </h1>
 
       <div
         style={{
@@ -164,60 +170,7 @@ function Products() {
         }}
       >
         {products.map((product) => (
-          <div
-            key={product.id}
-            style={{
-              border: "1px solid #ddd",
-              borderRadius: "12px",
-              padding: "12px",
-              textAlign: "center",
-              transition: "0.3s",
-              cursor: "pointer",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.05)";
-              e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.2)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
-          >
-            {/* ✅ Product Image */}
-            <img
-              src={product.imageUrl || "https://via.placeholder.com/200"}
-              alt={product.name}
-              style={{
-                width: "100%",
-                height: "160px",
-                objectFit: "cover",
-                borderRadius: "10px",
-              }}
-            />
-
-            <h3 style={{ margin: "10px 0" }}>{product.name}</h3>
-            <p style={{ fontSize: "14px", color: "#555" }}>
-              {product.description}
-            </p>
-            <p style={{ fontWeight: "bold", marginTop: "8px" }}>
-              ₹{product.price}
-            </p>
-
-            {/* 🔥 Add to Cart Button (UI only for now) */}
-            <button
-              style={{
-                marginTop: "10px",
-                padding: "8px 12px",
-                border: "none",
-                backgroundColor: "black",
-                color: "white",
-                borderRadius: "6px",
-                cursor: "pointer",
-              }}
-            >
-              Add to Cart
-            </button>
-          </div>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>
