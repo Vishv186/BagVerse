@@ -62,12 +62,16 @@ function Navbar() {
             <div
               style={{
                 position: "absolute",
-                top: "35px",
+                top: "45px",
+                left: "0",
                 background: "white",
-                padding: "12px",
-                borderRadius: "6px",
-                boxShadow: "0 6px 15px rgba(0,0,0,0.1)",
-                minWidth: "150px",
+                background: "#FFF8F0",
+                boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+                minWidth: "180px",
+                display: "flex",
+                flexDirection: "column",
+                padding: "8px 0",
+                overflow: "hidden",
               }}
             >
               <Link to="/bags/backpacks">Backpacks</Link>
